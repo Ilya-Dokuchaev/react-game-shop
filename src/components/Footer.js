@@ -21,7 +21,7 @@ export const Footer = () => {
             </div>
             <div className="footer-copyright">
                 <div className="container">
-                    © {new Date().getFullYear()} Saint-Petersbourg. All rights reserved.
+                   Copyright © {new Date().getFullYear()} ILDOK. All rights reserved.
                     <a className="grey-text repo text-lighten-4 right" href="#!">Repo</a>
                 </div>
             </div>
