@@ -14,6 +14,10 @@ code {
 .nav-wrapper{
   padding: 0 2rem;
 }
+nav{
+  position: fixed;
+  z-index: 5;
+}
 .main-content{
   min-height: 100vh;
 }
@@ -22,10 +26,34 @@ code {
   margin: 0 auto;
 }
 .goods {
+  max-width: 100%;
+  padding: 5rem 2.5rem 2.5rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1rem;
 }
 .not-found{
   margin: 0 auto;
+}
+.valign-wrapper{
+  justify-content: center;
+}
+.card-desc{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card-item{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.bold{
+  font-weight: bold;
+}
+.cart{
+  display: flex;
+  cursor: pointer;
+}
+.cart-quantity{
 }

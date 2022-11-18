@@ -4,20 +4,29 @@ export function GoodItem (props) {
         displayName,
         displayDescription,
         displayAssets:[{full_background}],
-        price:{finalPrice}
+        price:{finalPrice},
+        addToBasket=Function.prototype,
     } = props
     return(
-                <div className="card" id={mainId}>
+                <div className="card card-item hoverable" id={mainId}>
                     <div className="card-image">
                         <img src={full_background} alt={displayName}/>
                     </div>
                     <div className="card-content">
-                        <span className="card-title">{displayName}</span>
                         <p>{displayDescription}</p>
                     </div>
-                    <div className="card-action">
-                        <button className='btn'>Buy</button>
-                        <span className="right">{finalPrice}</span>
+                    <div className="card-action card-desc">
+                        <button
+                            className='btn'
+                            onClick={() =>
+                                addToBasket({
+                                    mainId,
+                                    displayName,
+                                    finalPrice,
+                                })
+                            }
+                        >Buy</button>
+                        <span className="bold">{finalPrice}</span>
                     </div>
                 </div>
     )

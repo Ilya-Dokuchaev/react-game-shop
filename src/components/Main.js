@@ -4,17 +4,18 @@ import {API_URL,API_KEY} from "../config";
 import {Preloader} from "./Preloader";
 import {GoodsList} from "./GoodsList";
 
-export const Main = () =>{
+export const Main = (props) =>{
     const [goods,setGoods] = useState([])
     const [loading,setLoading] = useState(true)
 
+    const {addToBasket=Function.prototype}=props
     useEffect(function getGoods(){
         fetch(API_URL,{
             headers: {
                 'Authorization':API_KEY
             },
         })
-            .then((responce)=>responce.json())
+            .then((response)=>response.json())
             .then((data) =>{
                 data.shop && setGoods(data.shop)
                 setLoading(false)
@@ -22,9 +23,9 @@ export const Main = () =>{
     },[])
 
     return (
-        <main className='main-content '>
+        <main className='main-content valign-wrapper'>
             {
-                loading?<Preloader/>:<GoodsList goods={goods} />
+                loading?<Preloader/>:<GoodsList goods={goods} addToBasket={addToBasket} />
             }
         </main>
 
