@@ -9,7 +9,7 @@ export const Footer = () => {
                         <p className="grey-text text-lighten-4">You can find more of my projects at Git-Hub. <br/>Feel free to contact me if you want to</p>
                     </div>
                     <div className="col l4 offset-l2 s12">
-                        <h5 className="white-text">Contacts</h5>
+                        <h5 id='contacts' className="white-text">Contacts</h5>
                         <ul>
                             <li><a className="grey-text text-lighten-3" href="#!">Telegram</a></li>
                             <li><a className="grey-text text-lighten-3" href="#!">LinkedIn</a></li>
