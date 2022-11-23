@@ -18,7 +18,7 @@ export const BasketItem = (props) =>{
                        x {quantity}
                    <i className={'material-icons basket-quantity blue-text'} onClick={()=>decQuantity(mainId)}>remove</i>
                    = {price*quantity}
-                    <img className='v-buck' src="https://pngset.com/images/v-buck-fortnite-fortnite-v-bucks-text-graphics-art-tape-transparent-png-169569.png" alt=""/></span>
+                   </span>
                <span  className='red-text close' onClick={() => removeFromBasket(mainId)}>
                 <i className="material-icons close" >close</i>
             </span>

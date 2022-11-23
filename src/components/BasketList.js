@@ -34,7 +34,7 @@ export const BasketList = (props) =>{
 
                     }
                     <li className="collection-item item-desc  blue accent-3 white-text "><button className={'btn'}>Proceed</button>
-                        <span className={'right text-bold'}>Price:{totalPrice}<img className='v-buck' src="https://pngset.com/images/v-buck-fortnite-fortnite-v-bucks-text-graphics-art-tape-transparent-png-169569.png" alt=""/></span>
+                        <span className={'right text-bold'}>Price:{totalPrice}</span>
 
                     </li>
                     <i className="close material-icons basket-close white-text" onClick={handleBasketClose}>close</i>

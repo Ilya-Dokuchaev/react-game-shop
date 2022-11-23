@@ -31,6 +31,10 @@ export const Main = (props) =>{
                 data.shop && setGoods(data.shop)
                 setLoading(false)
             })
+            .catch((err) =>{
+                console.error(err)
+                setLoading(false)
+            })
     },[])
 
     return (
