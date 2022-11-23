@@ -1,5 +1,5 @@
 export function Cart(props){
-    const {order = 0,quantity,handleBasketShow = Function.prototype,isBasketShow,handleBasketClose = Function.prototype,
+    const {order = 0,handleBasketShow = Function.prototype,isBasketShow,handleBasketClose = Function.prototype,
     } = props
 
     return(
