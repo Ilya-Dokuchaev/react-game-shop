@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Ilya-Dokuchaev/react-game-shop/static/css/main.f452b069.css",
-    "main.js": "/Ilya-Dokuchaev/react-game-shop/static/js/main.e46d6c1f.js",
+    "main.js": "/Ilya-Dokuchaev/react-game-shop/static/js/main.93a495e5.js",
     "index.html": "/Ilya-Dokuchaev/react-game-shop/index.html",
     "main.f452b069.css.map": "/Ilya-Dokuchaev/react-game-shop/static/css/main.f452b069.css.map",
-    "main.e46d6c1f.js.map": "/Ilya-Dokuchaev/react-game-shop/static/js/main.e46d6c1f.js.map"
+    "main.93a495e5.js.map": "/Ilya-Dokuchaev/react-game-shop/static/js/main.93a495e5.js.map"
   },
   "entrypoints": [
     "static/css/main.f452b069.css",
-    "static/js/main.e46d6c1f.js"
+    "static/js/main.93a495e5.js"
   ]
 }
