@@ -4,19 +4,59 @@ import {Footer} from "./components/Footer";
 import {Main} from "./components/Main";
 
 export const App = () =>{
-    const [order,setOrder] = useState([])
+
+    //Cart handlers
     const [isBasketShow,setBasketShow] = useState(false)
-
-
     const handleBasketShow = () => {
-        setBasketShow(!isBasketShow)
+        setBasketShow(true)
     }
+    const handleBasketClose = () => {
+        setBasketShow(false)
+    }
+    //end of cart handlers
 
+    //Quantity of items handlers
+    //Increment handler
+    const incQuantity = (itemId) =>{
+        const newOrder = order.map((el) => {
+            if (el.mainId === itemId){
+                const newQuantity = el.quantity + 1
+                return{
+                    ...el,
+                    quantity: newQuantity
+                }
+            } return el
+        })
+        setOrder(newOrder)
+    }
+    //Decrement handler
+    const decQuantity = (itemId) =>{
+        const newOrder = order.map((el) => {
+            if (el.mainId === itemId){
+                const newQuantity = el.quantity - 1
+                return{
+                    ...el,
+
+                    quantity: newQuantity>=1?newQuantity:1,
+                }
+            } return el
+        })
+        setOrder(newOrder)
+    }
+    //end of quantity handlers
+
+    //Order handlers
+    const [order,setOrder] = useState([])
+    //function that delete item from order in basket
+    const removeFromBasket = (itemId) => {
+        const newOrder = order.filter((el) => el.mainId !== itemId)
+        setOrder(newOrder)
+    }
+    //function that add items to order
     const addToBasket = (item) => {
         const itemIndex = order.findIndex(
             (orderItem) => orderItem.mainId === item.mainId
         );
-
         if (itemIndex < 0) {
             const newItem = {
                 ...item,
@@ -38,6 +78,8 @@ export const App = () =>{
             setOrder(newOrder);
         }
     }
+    //end of order handlers
+    //Function that handles clicks outside basket component
     function useComponentVisible(initialIsVisible) {
         const [isComponentVisible, setIsComponentVisible] = useState(
             initialIsVisible
@@ -47,14 +89,15 @@ export const App = () =>{
         const handleHideDropdown = (event: KeyboardEvent) => {
             if (event.key === "Escape") {
                 setIsComponentVisible(false);
-                handleBasketShow()
+                    setBasketShow(true)
             }
         };
 
         const handleClickOutside = event => {
             if (ref.current && !ref.current.contains(event.target)) {
                 setIsComponentVisible(false);
-                handleBasketShow()
+                setBasketShow(false)
+
             }
         };
 
@@ -70,10 +113,14 @@ export const App = () =>{
         return { ref, isComponentVisible, setIsComponentVisible };
     }
 
+
+
     return (
         <>
             <Header
+                isBasketShow={isBasketShow}
                 order={order}
+                handleBasketClose={handleBasketClose}
                 handleBasketShow={handleBasketShow}
             />
             <Main
@@ -81,7 +128,10 @@ export const App = () =>{
                 addToBasket={addToBasket}
                 order={order}
                 isBasketShow={isBasketShow}
-                handleBasketShow={handleBasketShow}
+                handleBasketClose={handleBasketClose}
+                removeFromBasket={removeFromBasket}
+                incQuantity={incQuantity}
+                decQuantity={decQuantity}
             />
             <Footer/>
         </>

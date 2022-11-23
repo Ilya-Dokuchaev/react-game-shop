@@ -9,8 +9,10 @@ import {BasketList} from "./BasketList";
 export const Main = (props) =>{
     const {
         addToBasket=Function.prototype,
-        handleBasketShow=Function.prototype,
+        handleBasketClose=Function.prototype,
         order,isBasketShow,useComponentVisible,
+        removeFromBasket = Function.prototype,
+        incQuantity,decQuantity,
     }=props
 
 
@@ -34,12 +36,20 @@ export const Main = (props) =>{
     return (
         <main className='main-content  valign-wrapper'>
             {
-                loading?<Preloader/>:<GoodsList goods={goods} addToBasket={addToBasket} />
-            }
-            {isBasketShow && (<BasketList
+                loading?<Preloader/>:<GoodsList
+                    goods={goods}
                     order={order}
-                    handleBasketShow={handleBasketShow}
+                    addToBasket={addToBasket}
+                />
+            }
+            {isBasketShow && (
+                <BasketList
+                    decQuantity={decQuantity}
+                    incQuantity={incQuantity}
+                    order={order}
+                    handleBasketClose={handleBasketClose}
                     useComponentVisible={useComponentVisible}
+                    removeFromBasket={removeFromBasket}
                 />
             )}
         </main>

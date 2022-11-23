@@ -63,8 +63,33 @@ nav{
 }
 .basket{
   max-width: 50rem;
+  max-height: 20rem;
   top: 30%;
   margin: 0 auto;
+  overflow-y: auto;
+  animation: show 250ms ease-in-out;
+}
+@keyframes show {
+  from {
+    top: 70%;
+    opacity: 0;
+  }
+  to {
+    top: 30%;
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fixed{
+  position: fixed;
 }
 .basket-bg {
   display: block;
@@ -76,12 +101,50 @@ nav{
   right: 0;
   bottom: 0;
   background-color:rgba(0, 0, 0, .5);
+  animation: fade-in 100ms ease;
 }
 .close{
   cursor: pointer;
+  float: right;
+  margin-left: auto;
 }
 .basket-close{
   position: absolute;
   top: 0.75rem;
   right: 1rem;
+}
+.text-bold{
+  font-weight: bold !important;
+}
+.v-buck{
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  border: 0.01rem solid black;
+  margin-left: 0.3rem;
+}
+.item-desc{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.card__title{
+  width: 100%;
+  backdrop-filter: blur(5px);
+  background-color: rgba(108, 152, 238, 0.56);
+  border: 1px solid rgba(209, 213, 219, 0.3);
+  padding: 0.8rem !important;
+  white-space: nowrap!important;
+  font-size: 1rem!important;
+}
+.basket-item--img{
+  width: 3.5rem;
+  margin-right: 1rem;
+}
+.collection{
+  border: none ;
+}
+.basket-quantity{
+  cursor: pointer;
+  vertical-align: middle;
 }
