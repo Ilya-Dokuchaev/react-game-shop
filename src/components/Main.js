@@ -1,24 +1,14 @@
-import React from "react";
-import {useState,useEffect} from "react";
+import React, {useRef, useState} from "react";
+import {useEffect,useContext} from "react";
+import {ShopContext} from "../context";
 import {API_URL,API_KEY} from "../config";
 import {Preloader} from "./Preloader";
 import {GoodsList} from "./GoodsList";
 import {BasketList} from "./BasketList";
 
 
-export const Main = (props) =>{
-    const {
-        addToBasket=Function.prototype,
-        handleBasketClose=Function.prototype,
-        order,isBasketShow,useComponentVisible,
-        removeFromBasket = Function.prototype,
-        incQuantity,decQuantity,
-    }=props
-
-
-    const [goods,setGoods] = useState([])
-    const [loading,setLoading] = useState(true)
-
+export const Main = () =>{
+    const {setGoods,loading,isBasketShow} = useContext(ShopContext)
 
     useEffect(function getGoods(){
         fetch(API_URL,{
@@ -28,33 +18,47 @@ export const Main = (props) =>{
         })
             .then((response)=>response.json())
             .then((data) =>{
-                data.shop && setGoods(data.shop)
-                setLoading(false)
-            })
-            .catch((err) =>{
-                console.error(err)
-                setLoading(false)
+                setGoods(data.shop)
             })
     },[])
+    function useComponentVisible(initialIsVisible) {
+        const [isComponentVisible, setIsComponentVisible] = useState(
+            initialIsVisible
+        );
+        const ref = useRef(null);
+
+        const handleHideDropdown = (event: KeyboardEvent) => {
+            if (event.key === "Escape") {
+                setIsComponentVisible(false);
+            }
+        };
+
+        const handleClickOutside = event => {
+            if (ref.current && !ref.current.contains(event.target)) {
+                setIsComponentVisible(false);
+            }
+        };
+
+        useEffect(() => {
+            document.addEventListener("keydown", handleHideDropdown, true);
+            document.addEventListener("click", handleClickOutside, true);
+            return () => {
+                document.removeEventListener("keydown", handleHideDropdown, true);
+                document.removeEventListener("click", handleClickOutside, true);
+            };
+        });
+
+        return { ref, isComponentVisible, setIsComponentVisible };
+    }
+
 
     return (
         <main className='main-content  valign-wrapper'>
             {
-                loading?<Preloader/>:<GoodsList
-                    goods={goods}
-                    order={order}
-                    addToBasket={addToBasket}
-                />
+                loading?<Preloader/>:<GoodsList/>
             }
             {isBasketShow && (
-                <BasketList
-                    decQuantity={decQuantity}
-                    incQuantity={incQuantity}
-                    order={order}
-                    handleBasketClose={handleBasketClose}
-                    useComponentVisible={useComponentVisible}
-                    removeFromBasket={removeFromBasket}
-                />
+                <BasketList useComponentVisible={useComponentVisible}/>
             )}
         </main>
 
