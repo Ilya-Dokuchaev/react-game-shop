@@ -8,8 +8,7 @@ import {BasketList} from "./BasketList";
 
 
 export const Main = () =>{
-    const {setGoods,loading,isBasketShow} = useContext(ShopContext)
-
+    const {setGoods,loading,isBasketShow,} = useContext(ShopContext)
     useEffect(function getGoods(){
         fetch(API_URL,{
             headers: {
@@ -20,7 +19,9 @@ export const Main = () =>{
             .then((data) =>{
                 setGoods(data.shop)
             })
+        //eslint-disable-next-line
     },[])
+
     function useComponentVisible(initialIsVisible) {
         const [isComponentVisible, setIsComponentVisible] = useState(
             initialIsVisible
@@ -30,12 +31,16 @@ export const Main = () =>{
         const handleHideDropdown = (event: KeyboardEvent) => {
             if (event.key === "Escape") {
                 setIsComponentVisible(false);
+            }return{
+                isBasketShow: false
             }
         };
 
         const handleClickOutside = event => {
             if (ref.current && !ref.current.contains(event.target)) {
                 setIsComponentVisible(false);
+            }return{
+                isBasketShow: false
             }
         };
 
